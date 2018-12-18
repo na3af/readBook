@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/categoryStyle.css') }}" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	</head>
+	<body style="background-color: #161616">
+		<div class="container">
+			<div class="row">
+				<div class="Header col-sm-12">
+					<div class="headerIcon">raed<b>books</b></div>
+					<div class="loginIcon">
+						{% if user_loged_in %} <img src="{{userInfo.picture}}" class="user" />
+						<a class="loginButton" href="{{url_for('gdisconnect')}}">LOGOUT</a> {% else %}
+						<a class="loginButton" href="{{url_for('showLogin')}}">LOGIN</a> {% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<div class="TabBar">
+						<a class="tablink" href="{{url_for('showAllCategory')}}">All Genres</a>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Business')}}">Business</a>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Science')}}">Science</a>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Fiction')}}">Fiction</a>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Philosophy')}}"
+							>Philosophy</a
+						>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Biography')}}"
+							>Biography</a
+						>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				{% for i in list %}
+				<div class="BookCard col-sm-4">
+					<a href="{{url_for('showCategoryItem',category_name=i.category.name , item_title=i.title)}}"
+						><img src="{{ i.picture }}" class="BookImage"
+					/></a>
+					<div class="BookCardText" style="color:white;">{{ i.title }}</div>
+					<div class="BookCardText" style="color:rgba(184, 184, 184, 0.678);">{{ i.author }}</div>
+				</div>
+				{% endfor %} {% if user_loged_in %}
+				<div class="BookCard col-sm-4">
+					<a href="{{url_for('newCategoryItem')}}"><img src="/photo/new.png" class="BookImage"/></a>
+					<div class="BookCardText" style="color:white;">Add New Book</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</body>
+</html>

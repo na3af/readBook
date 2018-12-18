@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/categoryStyle.css') }}" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	</head>
+	<body style="background-color: #161616">
+		<div class="container">
+			<div class="row">
+				<div class="Header col-sm-12">
+					<div class="headerIcon">raed<b>books</b></div>
+					<div class="loginIcon">
+						{% if user_loged_in %} <img src="{{userInfo.picture}}" class="user" />
+						<a class="loginButton" href="{{url_for('gdisconnect')}}">LOGOUT</a> {% else %}
+						<a class="loginButton" href="{{url_for('showLogin')}}">LOGIN</a> {% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<div class="TabBar">
+						<a class="tablink" href="{{url_for('showAllCategory')}}">All Genres</a>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Business')}}">Business</a>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Science')}}">Science</a>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Fiction')}}">Fiction</a>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Philosophy')}}"
+							>Philosophy</a
+						>
+						<a class="tablink" href="{{url_for('showCategoryItems',category_name='Biography')}}"
+							>Biography</a
+						>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<!--
+					---------------------------------------------------------- Here ---------------------------------------------------------
+				-->
+				<div class="BookCard col-sm-2"></div>
+				<div class="BookCard col-sm-8">
+					<form action="{{ url_for('newCategoryItem' , category_name=category_name) }}" method="post" enctype=multipart/form-data>
+						<div class=" " style="color:white;font-size: 24px;text-align: -webkit-left;">Add New Book</div>
+						<div class="Form">
+							<div class="FormRow">
+								<div
+									class=" "
+									style="color:white;font-size: 18px;text-align: -webkit-left;margin-right: 25px;    width: 80px;"
+								>
+									Title
+								</div>
+								<input type="text" size="40" name="Title" />
+							</div>
+							<div class="FormRow">
+								<div
+									class=" "
+									style="color:white;font-size: 18px;text-align: -webkit-left;margin-right: 25px;    width: 80px;"
+								>
+									Author
+								</div>
+								<input type="text" size="40" name="Author" />
+							</div>
+							<div class="FormRow">
+								<div
+									class=" "
+									style="color:white;font-size: 18px;text-align: -webkit-left;margin-right: 25px;    width: 80px;"
+								>
+									Description
+								</div>
+								<input type="text" size="80" name="Description" />
+							</div>
+							<div class="FormRow">
+								<div
+									class=" "
+									style="color:white;font-size: 18px;text-align: -webkit-left;margin-right: 25px;    width: 80px;"
+								>
+									Genre
+								</div>
+								<select name="category">
+									<option value="Business">Business</option>
+									<option value="Science">Science</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Philosophy">Philosophy</option>
+									<option value="Biography">Biography</option>
+								</select>
+              </div>
+              <div class="FormRow">
+                	<div
+									class=" "
+									style="color:white;font-size: 18px;text-align: -webkit-left;margin-right: 25px;      padding-top: 10px;  width: 80px;"
+								>
+                Picture
+								</div>
+              <div class="file-upload">
+                  <label for="upload" class="file-upload__label">upload Your picture </label>
+                  <input id="upload" class="file-upload__input" type="file" name="file">
+              </div>
+            </div>
+            </div>
+            <div class="book-submit">
+                <label for="submit" class="book-submit__label">SUBMIT</label>
+                <input id="submit" type="submit" value="SUBMIT" class="book-submit__input"/>
+            </div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
