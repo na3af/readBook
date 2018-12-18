@@ -1,8 +1,3 @@
-def application(environ, start_response):
-    status = '200 OK'
-    output = 'Hello Nawaf!'
-
-    response_headers = [('Content-type', 'text/plain'), ('Content-Length', str(len(output)))]
-    start_response(status, response_headers)
-
-    return [output]
+activate_this = '/project.py'
+with open(activate_this) as file_:
+    exec(file_.read(), dict(__file__=activate_this))
