@@ -59,5 +59,5 @@ class CategoryItem(Base):
             'author': self.author,
         }
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('sqlite:////var/www/FlaskApp/FlaskApp/readBook/catalog.db')
 Base.metadata.create_all(engine)

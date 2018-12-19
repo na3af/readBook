@@ -23,14 +23,15 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg'])
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-CLIENT_ID = json.loads(open('client_secrets.json',
+CLIENT_ID = json.loads(open('/var/www/FlaskApp/FlaskApp/readBook/client_secrets.json',
                             'r').read())['web']['client_id']
 
 # Instance, every time it runs create instance name
 
+#SQLALCHEMY_DATABASE_URI =  'sqlite://' + os.path.join(basedir, 'catalog.db')
+
 engine = create_engine(
-    'sqlite:///catalog.db?check_same_thread=False',
-    poolclass=SingletonThreadPool)
+    'sqlite:////var/www/FlaskApp/FlaskApp/readBook/catalog.db?check_same_thread=False')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
