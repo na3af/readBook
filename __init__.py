@@ -17,6 +17,8 @@ from oauth2client.client import FlowExchangeError
 from werkzeug.utils import secure_filename
 
 
+path = os.path.dirname(__file__)
+
 UPLOAD_FOLDER = (path+'./photo')
 ALLOWED_EXTENSIONS = set(['png', 'jpg'])
 
@@ -26,7 +28,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CLIENT_ID = json.loads(open('/var/www/FlaskApp/FlaskApp/readBook/client_secrets.json',
                             'r').read())['web']['client_id']
 
-path = os.path.dirname(__file__)
+
 
 # Instance, every time it runs create instance name
 
