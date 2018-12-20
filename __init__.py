@@ -26,6 +26,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CLIENT_ID = json.loads(open('/var/www/FlaskApp/FlaskApp/readBook/client_secrets.json',
                             'r').read())['web']['client_id']
 
+path = os.path.dirname(__file__)
+
 # Instance, every time it runs create instance name
 
 #SQLALCHEMY_DATABASE_URI =  'sqlite://' + os.path.join(basedir, 'catalog.db')
@@ -59,7 +61,7 @@ def gconnect():
     code = request.data
     try:
         # Upgrade the authorization code into a credentials object
-        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets(path+’/client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
