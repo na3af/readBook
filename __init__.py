@@ -19,7 +19,7 @@ from werkzeug.utils import secure_filename
 
 path = os.path.dirname(__file__)
 
-UPLOAD_FOLDER = (path+'./photo')
+UPLOAD_FOLDER = (path+'/photo')
 ALLOWED_EXTENSIONS = set(['png', 'jpg'])
 
 app = Flask(__name__)
