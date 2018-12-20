@@ -17,7 +17,7 @@ from oauth2client.client import FlowExchangeError
 from werkzeug.utils import secure_filename
 
 
-UPLOAD_FOLDER = './photo'
+UPLOAD_FOLDER = (path+'./photo')
 ALLOWED_EXTENSIONS = set(['png', 'jpg'])
 
 app = Flask(__name__)
